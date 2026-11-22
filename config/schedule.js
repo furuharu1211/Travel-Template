@@ -11,7 +11,7 @@ window.TRIP_DATA.schedule = {
       items: [
         { time: "09:00", title: "集合・出発", description: "集合場所で合流して出発。", transport: "電車", notes: ["出発10分前に集合"] },
         { time: "12:00", endTime: "13:00", title: "昼食", description: "旅先でランチを楽しむ。" },
-        { time: "14:00", title: "観光スポット", description: "旅先の風景を楽しむ。", image: "images/hero/hero-01.svg", detail: { page: "sightseeing", label: "観光地を見る" } },
+        { time: "14:00", title: "観光スポット", description: "旅先の風景を楽しむ。", image: "images/hero/hero-01.svg", detail: { page: "sightseeing", label: "観光地を見る", anchor: "spot-01" } },
         { time: "16:00", title: "チェックイン", description: "宿泊施設に到着。", detail: { page: "hotel", label: "宿の詳細を見る" } }
       ]
     },
