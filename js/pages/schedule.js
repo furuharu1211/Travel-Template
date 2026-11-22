@@ -20,22 +20,23 @@
   function render(main, config) {
     const {el, pages, enabled}=window.TravelUI;
     const data=window.TRIP_DATA?.schedule;
-    if (!data || !Array.isArray(data.days) || !data.days.length) {
+    const validDays=Array.isArray(data?.days)?data.days.filter(d=>d&&typeof d==="object"):[];
+    if (!validDays.length) {
       main.append(el("p","notice","旅の予定はまだ登録されていません。")); return;
     }
     if(data.lead) main.append(el("p","schedule-lead",data.lead));
     const jump=el("nav","schedule-jump");jump.setAttribute("aria-label","日程への移動");
-    data.days.forEach((day,i)=>{
+    validDays.forEach((day,i)=>{
       const a=el("a","schedule-btn",(i+1)+"日目");a.href="#day-"+(i+1);jump.append(a);
     });
-    if(data.days.length>1) main.append(jump);
+    if(validDays.length>1) main.append(jump);
     const days=el("div","timeline-days");
-    data.days.forEach((day,i)=>{
+    validDays.forEach((day,i)=>{
       const article=el("article","day-block");article.id="day-"+(i+1);
       const date=dateLabel(day,i,config);
       article.append(el("h2","day-title",(i+1)+"日目"+(date?"｜"+date:"")));
       if(day.title) article.append(el("p","day-subtitle",day.title));
-      const items=Array.isArray(day.items)?day.items:[];
+      const items=Array.isArray(day.items)?day.items.filter(item=>item&&typeof item==="object"):[];
       if(!items.length){article.append(el("p","notice","予定は未定です。"));days.append(article);return;}
       const timeline=el("ol","timeline");
       items.forEach(item=>{

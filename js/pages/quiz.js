@@ -11,6 +11,7 @@ for(const [key,q] of Object.entries(raw)){
 }
 const parsed=Date.parse(data.openAt||"");
 const QUIZ_OPEN_AT=Number.isFinite(parsed)?parsed:0;
+const invalidOpenAt=Boolean(data.openAt)&&!Number.isFinite(parsed);
 const openLabel=Number.isFinite(parsed)?String(data.openAt).slice(0,10).replaceAll("-","."):"";
 const STORAGE_PREFIX="travel-template:quiz:"+location.pathname+":"+String(config.id||"trip")+":"+String(config.startDate||"")+":";
 const quizApp=document.createElement("div");quizApp.id="quiz-app";main.append(quizApp);
@@ -910,6 +911,7 @@ function initializeQuiz() {
         return;
     }
 
+    if(invalidOpenAt){quizApp.innerHTML='<h1 class="page-title">観光地クイズ</h1><p class="notice">クイズの公開日時の設定を確認してください。</p>';return;}
     quizApp.addEventListener(
         'click',
         handleQuizClick

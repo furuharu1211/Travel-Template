@@ -234,7 +234,7 @@ button.btn:disabled {
 
   border:
     1px solid
-    var(--border);
+    var(--control-border);
 
   border-radius:
     var(--radius-sm);

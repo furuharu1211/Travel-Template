@@ -22,7 +22,7 @@
   const hero=el("section","hero"); hero.setAttribute("aria-label","旅行メインビジュアル");
   const slides=(Array.isArray(c.heroImages)?c.heroImages:[]).map(src=>{
     const img=el("img","hero-slide");img.src=src;img.alt="";img.setAttribute("aria-hidden","true");
-    img.addEventListener("error",()=>img.remove());hero.append(img);return img;
+    img.addEventListener("error",()=>{const wasActive=img.classList.contains("is-active");img.remove();if(wasActive)hero.querySelector(".hero-slide")?.classList.add("is-active");});hero.append(img);return img;
   });
   if(slides.length)slides[0].classList.add("is-active");
   let active=0;
