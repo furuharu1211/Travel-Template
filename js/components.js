@@ -62,7 +62,7 @@ window.TravelUI = (() => {
   function mount(c, current) {
     const header = el("header","site-header");
     const inner = el("div","header-inner");
-    const brand = el("a","brand"); brand.href="index.html";
+    const brand = el("a","brand"); brand.href="index.html"; brand.setAttribute("aria-label","HOMEへ戻る");
     if(c.logo) { const img=el("img"); img.src=c.logo; img.alt=""; img.addEventListener("error",()=>img.remove()); brand.append(img); }
     brand.append(el("span","",c.subtitle || c.title));
     const button=el("button","menu-toggle","☰"); button.type="button";

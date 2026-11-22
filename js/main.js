@@ -13,11 +13,11 @@
   ui.mount(c,current);
   if(current!=="index"){
     main.className="inner-main container";
-    if(current!=="quiz" || !enabled(c,page)) main.append(el("span","eyebrow",({schedule:"SCHEDULE",sightseeing:"SIGHTSEEING",hotel:"HOTEL",belongings:"BELONGINGS",members:"MEMBERS",memo:"MEMO"})[current]||"TRIP INFORMATION"),el("h1","page-title",page.label));
+    if(current!=="quiz" || !enabled(c,page)) main.append(el("span","eyebrow",({schedule:"SCHEDULE",sightseeing:"SIGHTSEEING",hotel:"HOTEL",belongings:"BELONGINGS",members:"MEMBERS",memo:"MEMO",quiz:"SIGHTSEEING QUIZ"})[current]||"TRIP INFORMATION"),el("h1","page-title",page.label));
     if(!enabled(c,page)){main.append(el("p","notice","この旅行ではこのページを使用していません。"));return;}
     const render=window.TravelPages?.[current];
     if(typeof render==="function"){render(main,c);return;}
-    main.append(el("p","notice","このページは準備中です。STEP 5以降で実装します。"));return;
+    main.append(el("p","notice","ページの表示プログラムを読み込めませんでした。"));return;
   }
   const hero=el("section","hero"); hero.setAttribute("aria-label","旅行メインビジュアル");
   const slides=(Array.isArray(c.heroImages)?c.heroImages:[]).map(src=>{

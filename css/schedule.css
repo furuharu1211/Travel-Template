@@ -1,10 +1,8 @@
 /* Awaji-Tripの日別タイムラインを継承。色は共通テーマ変数を参照。 */
-.schedule-lead{color:var(--muted);font-size:.9rem;margin:0 0 24px}
+.schedule-lead{color:var(--muted);font-size:var(--body-size);margin:0 0 24px}
 .schedule-jump,.schedule-buttons{display:flex;flex-wrap:wrap;gap:8px}
 .schedule-jump{margin:0 0 28px}
-.schedule-btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:7px 13px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);color:var(--accent-dark);font-weight:700;font-size:.8rem;text-decoration:none;overflow-wrap:anywhere}
-.schedule-btn:hover{border-color:var(--accent)}
-.timeline-days{display:grid;gap:32px}
+.timeline-days{display:grid;gap:var(--section-gap)}
 .day-block{scroll-margin-top:12px;min-width:0}
 .day-title{margin:0 0 12px;padding:12px 16px;background:var(--surface-2);border-radius:var(--radius-sm);color:var(--text);font-size:1rem;border-left:4px solid var(--accent)}
 .day-subtitle{margin:0 0 16px;color:var(--muted);font-size:.85rem;font-weight:700}
@@ -18,7 +16,7 @@
 .timeline-item:last-child .timeline-dot-wrap:before{bottom:auto;height:24px}
 .timeline-item:only-child .timeline-dot-wrap:before{display:none}
 .timeline-dot{position:relative;z-index:1;width:12px;height:12px;margin-top:18px;border:3px solid var(--surface);border-radius:50%;background:var(--accent-dark);box-shadow:0 0 0 1px var(--accent)}
-.timeline-card{min-width:0;margin:0 0 16px;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow);overflow-wrap:anywhere}
+.timeline-card{margin:0 0 16px;padding:14px}
 .timeline-card h3{margin:0 0 6px;font-size:1rem;line-height:1.5}
 .timeline-description{margin:0 0 8px;font-size:.85rem;white-space:pre-line}
 .timeline-transport{display:inline-block;background:var(--surface-2);border-radius:8px;padding:3px 8px;color:var(--text);font-size:.75rem}
