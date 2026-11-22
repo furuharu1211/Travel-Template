@@ -13,8 +13,10 @@
   ui.mount(c,current);
   if(current!=="index"){
     main.className="inner-main container";
-    main.append(el("span","eyebrow","TRIP INFORMATION"),el("h1","page-title",page.label));
+    main.append(el("span","eyebrow",current==="schedule"?"SCHEDULE":"TRIP INFORMATION"),el("h1","page-title",page.label));
     if(!enabled(c,page)){main.append(el("p","notice","この旅行ではこのページを使用していません。"));return;}
+    const render=window.TravelPages?.[current];
+    if(typeof render==="function"){render(main,c);return;}
     main.append(el("p","notice","このページは準備中です。STEP 5以降で実装します。"));return;
   }
   const hero=el("section","hero"); hero.setAttribute("aria-label","旅行メインビジュアル");
