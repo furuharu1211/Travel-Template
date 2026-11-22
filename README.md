@@ -2,8 +2,8 @@
 
 Awaji-Tripを原型にした旅行サイトの共通テンプレートです。HTML / CSS / Vanilla JavaScript、ビルド不要。
 
-## 現在の状態（STEP 5-6）
-トップページ・共通ナビゲーション・フッター・6テーマ・ページの表示切り替えを実装。旅のしおり・観光地・宿泊施設・持ち物・参加メンバー・観光地クイズも実装済み。旅行メモは準備中です。
+## 現在の状態（STEP 5-7）
+トップページ・共通ナビゲーション・フッター・6テーマ・ページの表示切り替えを実装。旅のしおり・観光地・宿泊施設・持ち物・参加メンバー・観光地クイズ・旅行メモも実装済み。全8ページの実装が完了しました（ブラウザでの総合動作確認は今後実施）。
 
 ## カスタマイズ
 - config/trip.js: 旅行名・日程・ロゴ・背景画像・テーマ・機能の有効/無効
@@ -13,7 +13,7 @@ Awaji-Tripを原型にした旅行サイトの共通テンプレートです。H
 - config/belongings.js: 持ち物（分類・チェックリスト）
 - config/members.js: 参加メンバー（名前・説明・役割）
 - config/quiz.js: 観光地クイズ（カテゴリ・問題・公開日時）
-- その他の config/各ページ.js: ページ別データ（準備中）
+- config/memo.js: 旅行メモ（見出し・文章・リンク）
 - images/: 旅行画像。初期画像は汎用SVGです。実際の写真に変更する場合、trip.js のパスも変更してください。
 - テーマ: classic / ocean / nature / urban / warm / luxury
 - features の値を false にするとメニューから除外され、直接アクセス時も無効表示になります。アクセス制御ではありません。
@@ -47,6 +47,11 @@ config/members.js の配列に name（名前）、description（集合・解散�
 config/quiz.js の categories にカテゴリを追加し、questions に question、choices、answer（0始まり）、explanation を記述します。categoryName、perfectTitle、passMessage、detailUrl はカテゴリ単位で設定します。detailUrl は sightseeing.html またはそのカードへのアンカーで、観光地ページが有効な場合のみ表示します。
 問題数に応じて100点満点で採点（端数切り捨て）、80点以上で合格。最高得点は旅行ID・開始日・サイトパス別にブラウザに保存します。openAt は日時（例：2027-03-20T00:00:00+09:00）、空なら即時公開。公開日時は表示制御でありアクセス制御ではありません。
 Awaji-Tripの猫の結果演出と効果音を継承しています。素材は images/quiz/ と sounds/ にあります。
+
+## 旅行メモ
+config/memo.js の配列に title（見出し）、text（文章）、links（リンクの配列）を記述します。見出し以外は任意です。文章は \n で改行できます。
+links は label（ボタン名）と url（HTTP または HTTPS のURL）を指定します。リンクは別タブで開き、未設定のリンクは表示しません。メモは自由に追加・削除できます。
+公開サイトには予約番号・個人情報などの機密情報を記載しないでください。
 
 ## 確認・公開
 index.html をブラウザで開くか、VS Code Live Serverで確認します。

@@ -13,7 +13,7 @@
   ui.mount(c,current);
   if(current!=="index"){
     main.className="inner-main container";
-    if(current!=="quiz" || !enabled(c,page)) main.append(el("span","eyebrow",({schedule:"SCHEDULE",sightseeing:"SIGHTSEEING",hotel:"HOTEL",belongings:"BELONGINGS",members:"MEMBERS"})[current]||"TRIP INFORMATION"),el("h1","page-title",page.label));
+    if(current!=="quiz" || !enabled(c,page)) main.append(el("span","eyebrow",({schedule:"SCHEDULE",sightseeing:"SIGHTSEEING",hotel:"HOTEL",belongings:"BELONGINGS",members:"MEMBERS",memo:"MEMO"})[current]||"TRIP INFORMATION"),el("h1","page-title",page.label));
     if(!enabled(c,page)){main.append(el("p","notice","この旅行ではこのページを使用していません。"));return;}
     const render=window.TravelPages?.[current];
     if(typeof render==="function"){render(main,c);return;}
