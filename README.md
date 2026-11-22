@@ -8,7 +8,7 @@ Awaji-Tripを原型にした旅行サイトの共通テンプレートです。H
 ## カスタマイズ
 - config/trip.js: 旅行名・日程・ロゴ・背景画像・テーマ・機能の有効/無効
 - config/schedule.js: 旅のしおり（日別タイムライン）
-- config/sightseeing.js: 観光地（分類・スポット・施設情報）
+- config/sightseeing.js: 観光地（分類・写真・紹介・リンク）
 - その他の config/各ページ.js: ページ別データ（準備中）
 - images/: 旅行画像。初期画像は汎用SVGです。実際の写真に変更する場合、trip.js のパスも変更してください。
 - テーマ: classic / ocean / nature / urban / warm / luxury
@@ -21,8 +21,8 @@ map.embedUrl に公開可能な Google マイマップの HTTPS 埋め込みURL�
 
 ## 観光地
 config/sightseeing.js の groups 配列に分類を、各 groups の spots 配列に観光スポットを記述します。空の分類は非表示です。
-スポットの title、id（ページ内で一意の英数字・ハイフン・アンダースコア、先頭は英字）、category、description、images（src/alt の配列）、hours、fee、duration、address、access、parking、notes を設定できます。画像は複数枚なら横スクロールになります。
-website、googleMaps、appleMaps に実際のURLを設定します。mapQuery を入力すると、個別の地図URLが未設定の場合に検索リンクを生成します。不要な項目は省略できます。
+スポットの title、id（ページ内で一意の英数字・ハイフン・アンダースコア、先頭は英字）、description、images（src/alt の配列） を設定できます。画像は複数枚なら横スクロールになります。
+website、googleMaps、appleMaps に実際のURLを設定します。mapQuery を入力すると、個別の地図URLが未設定の場合に検索リンクを生成します。不要な項目は省略できます。営業時間・料金などの詳細は公式サイトへのリンクで案内します。
 旅のしおりの detail に page: "sightseeing", anchor: "spot-01" のように設定すると、対応する id のカードへ移動します。サンプルの施設は架空であり、画像もイラストです。
 
 ## 確認・公開

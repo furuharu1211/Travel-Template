@@ -13,18 +13,10 @@ window.TRIP_DATA.sightseeing = {
         {
           id: "spot-01",
           title: "観光スポット",
-          category: "自然・絶景",
           description: "旅先の風景を楽しむスポットです。散策や写真撮影におすすめ。",
           images: [
             { src: "images/hero/hero-01.svg", alt: "山と水辺のサンプルイラスト" }
           ],
-          hours: "未定",
-          fee: "未定",
-          duration: "約1時間",
-          address: "",
-          access: "",
-          parking: "",
-          notes: ["営業時間・料金は出発前に確認してください。"],
           website: "",
           googleMaps: "",
           appleMaps: "",
@@ -41,7 +33,6 @@ window.TRIP_DATA.sightseeing = {
         {
           id: "spot-02",
           title: "散策・お土産スポット",
-          category: "散策・ショッピング",
           description: "旅の思い出になるお土産を探したり、のんびり散策したりする候補です。",
           images: [{ src: "images/hero/hero-02.svg", alt: "夕景のサンプルイラスト" }]
         }

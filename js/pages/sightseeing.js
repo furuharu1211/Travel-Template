@@ -55,15 +55,8 @@
         });
         if(frames.childElementCount){if(frames.childElementCount>1){frames.classList.add("is-gallery");frames.tabIndex=0;frames.setAttribute("aria-label",title+"の写真（横スクロール）");}card.append(frames);}
         const body=el("div","place-body");
-        if(spot.category)body.append(el("span","place-category",spot.category));
         body.append(el("h3","",title));
         if(spot.description)body.append(el("p","place-description",spot.description));
-        const details=el("dl","place-details");
-        [["営業時間",spot.hours],["料金",spot.fee],["所要時間",spot.duration],["住所",spot.address],["アクセス",spot.access],["駐車場",spot.parking]].forEach(([label,value])=>{
-          if(value){const row=el("div","place-detail");row.append(el("dt","",label),el("dd","",value));details.append(row);}
-        });
-        if(details.childElementCount)body.append(details);
-        if(Array.isArray(spot.notes)&&spot.notes.length){const notes=el("ul","place-notes");spot.notes.forEach(note=>notes.append(el("li","",note)));body.append(notes);}
         const buttons=el("div","place-buttons");
         const query=typeof spot.mapQuery==="string"?spot.mapQuery.trim():"";
         const google=safeUrl(spot.googleMaps)||(query?"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(query):null);
