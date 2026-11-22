@@ -2,8 +2,88 @@
 
 Awaji-Tripを原型にした旅行サイトの共通テンプレートです。HTML / CSS / Vanilla JavaScript、ビルド不要。
 
-## 現在の状態（STEP 7）
+## 現在の状態（STEP 8：利用手順整備）
 トップページ・共通ナビゲーション・フッター・6テーマ・ページの表示切り替えを実装。旅のしおり・観光地・宿泊施設・持ち物・参加メンバー・観光地クイズ・旅行メモも実装済み。全8ページの実装とテーマ・デザインの共通化が完了しました（静的参照と主要機能の模擬DOMテストを実施済み。実ブラウザ確認は未実施）。
+
+## 新しい旅行サイトの作り方
+
+### 1. テンプレートからリポジトリを作成
+テンプレート管理者は初回のみ [Settings → General](https://github.com/furuharu1211/Travel-Template/settings) の Template repository を有効にしてください。
+1. [Travel-Template](https://github.com/furuharu1211/Travel-Template) を開く。
+2. Use this template → Create a new repository を選択。
+3. Owner、Repository name（例: Hakone-Trip）、公開範囲を指定して作成。
+4. 作成先が Travel-Template ではなく新しい旅行用リポジトリであることを確認。
+
+### 2. VS Code にクローン
+Ctrl + Shift + P → Git: Clone を選択し、新しいリポジトリのURLを入力します。保存先を選んで開きます。ターミナルから行う場合は以下（例）です。
+```bash
+git clone https://github.com/furuharu1211/Hakone-Trip.git
+cd Hakone-Trip
+code .
+```
+編集前に `git remote -v` で新しい旅行用リポジトリが origin になっていることを確認します。
+
+### 3. 旅行基本情報・テーマ・使用ページを設定
+`config/trip.js` を編集します。旅行ごとに id を一意に変更し、旅行名、日程、写真、theme、features を設定してください。
+```javascript
+window.TRIP_CONFIG = {
+  id: "hakone-2027",
+  title: "箱根旅行",
+  subtitle: "HAKONE TRIP 2027",
+  startDate: "2027-03-20",
+  endDate: "2027-03-21",
+  theme: "nature",
+  logo: "images/common/logo.svg",
+  heroImages: ["images/hero/hero-01.svg"],
+  features: {
+    schedule: true, sightseeing: true, quiz: true, hotel: true,
+    belongings: true, members: true, memo: false
+  }
+};
+```
+テーマは classic / ocean / nature / urban / warm / luxury の6種類。features を false にすれば不要なページを非表示にできます。
+
+### 4. 各ページの内容・写真を差し替える
+| 編集ファイル | 内容 |
+|---|---|
+| config/schedule.js | 日程・時刻・予定・詳細リンク |
+| config/sightseeing.js | 観光地・写真・紹介・公式サイト / 地図リンク |
+| config/hotel.js | 宿泊施設の紹介・写真 |
+| config/belongings.js | 持ち物 |
+| config/members.js | 参加メンバー |
+| config/quiz.js | クイズ・正解・解説・公開日時 |
+| config/memo.js | 共有事項・リンク |
+
+写真は images/hero、images/sightseeing、images/hotel などに配置し、設定内の相対パスを変更します。ファイル名の大文字・小文字も一致させてください。サンプルデータは削除・差し替え、不要な項目は省略します。通常はHTML・CSS・表示用JavaScriptの変更は不要です。
+旅のしおりの detail.anchor と観光地・宿泊施設の id を一致させてください。クイズの answer は0始まりです。クイズのリンク先も旅行内容に合わせて更新します。
+
+### 5. ローカルで確認してコミット
+VS Code の Live Server で index.html を開きます。各ページ、画像、リンク、スマートフォン表示、クイズ、持ち物チェックを確認してください。変更を保存したら以下を実行します。
+```bash
+git status
+git add .
+git commit -m "Customize travel site"
+git push origin main
+```
+GitHub側で編集した場合はローカルで `git pull origin main` を実行して同期します。
+
+### 6. GitHub Pagesで公開
+新しい旅行用リポジトリの Settings → Pages → Build and deployment で Source を Deploy from a branch にし、main / (root) を選択して Save。デプロイ完了後、Settings → Pages に表示されるURLで動作確認します。
+例: https://furuharu1211.github.io/Hakone-Trip/ （公開成功後の想定URL）
+無料プランでは通常、公開リポジトリが必要です。非公開リポジトリのPages利用やサイト自体の公開範囲は契約プランと設定に依存します。
+
+### 7. 必要な場合のみ独自ドメインを設定
+通常の github.io URL で公開できます。既存の Cloudflare 管理ドメインを利用する場合は、旅行ごとに異なるサブドメイン（例: hakone.furune-trip.com）を用意します。GitHubのドメイン所有確認を推奨します。新しいリポジトリの Settings → Pages → Custom domain に設定し、Cloudflare DNSでそのサブドメインの CNAME を furuharu1211.github.io に向けます（DNS only 推奨）。DNS確認・証明書発行後に Enforce HTTPS を有効にします。既存旅行のDNSやCNAMEを変更・流用しないでください。
+
+### 公開前チェック
+- [ ] 新しいリポジトリにコミットしている（テンプレート本体ではない）
+- [ ] 旅行ID・日付・参加者・サンプルデータを更新した
+- [ ] 写真・リンク・詳細アンカーが正しい
+- [ ] スマートフォン表示、クイズ採点・音声、持ち物保存を実機確認した
+- [ ] 個人情報、予約番号、秘密情報を含めていない
+- [ ] 公開URLから各ページを確認した
+
+テンプレート本体の後日の更新は、作成済みの旅行用リポジトリへ自動反映されません。必要な変更だけ個別に取り込んでください。
 
 ## カスタマイズ
 - config/trip.js: 旅行名・日程・ロゴ・背景画像・テーマ・機能の有効/無効
@@ -63,9 +143,9 @@ GitHub Pages は Settings → Pages → Deploy from a branch → main / (root) �
 
 ## STEP 7 確認結果
 - 全8ページのHTML・設定ファイル・読み込み順・画像・効果音・サンプル詳細アンカーを確認。
-- 4ページ（トップ・しおり・クイズ・持ち物）×6テーマの模擬DOM描画、および7機能の無効化・メニュー除外を確認。
+- 全8ページ×6テーマ（48通り）の模擬DOM描画、および7機能の無効化・メニュー除外を確認。
 - クイズ100/80/0点、再挑戦、最高得点、公開ロック、効果音呼び出し、持ち物の保存復元、日付、トップ画像のエラー時切り替えを確認。
 - 実ブラウザでの表示、タッチ操作、外部サイトへの接続、実音声再生はLive Serverで別途確認してください。
 
 ## 注意
-公開リポジトリに個人情報、予約番号、秘密情報を入れないでください。写真共有・Cloudflare・独自ドメインは初期版の対象外です。
+公開リポジトリに個人情報、予約番号、秘密情報を入れないでください。写真共有は初期版の対象外です。Cloudflare・独自ドメインは任意の公開設定であり、テンプレート本体には設定していません。
