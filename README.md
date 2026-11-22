@@ -2,13 +2,14 @@
 
 Awaji-Tripを原型にした旅行サイトの共通テンプレートです。HTML / CSS / Vanilla JavaScript、ビルド不要。
 
-## 現在の状態（STEP 5-2）
-トップページ・共通ナビゲーション・フッター・6テーマ・ページの表示切り替えを実装。旅のしおり・観光地も実装済み。その他5ページは準備中です。
+## 現在の状態（STEP 5-3）
+トップページ・共通ナビゲーション・フッター・6テーマ・ページの表示切り替えを実装。旅のしおり・観光地・宿泊施設も実装済み。その他4ページは準備中です。
 
 ## カスタマイズ
 - config/trip.js: 旅行名・日程・ロゴ・背景画像・テーマ・機能の有効/無効
 - config/schedule.js: 旅のしおり（日別タイムライン）
 - config/sightseeing.js: 観光地（分類・写真・紹介・リンク）
+- config/hotel.js: 宿泊施設（概要・部屋・食事・お風呂・設備・アクセス）
 - その他の config/各ページ.js: ページ別データ（準備中）
 - images/: 旅行画像。初期画像は汎用SVGです。実際の写真に変更する場合、trip.js のパスも変更してください。
 - テーマ: classic / ocean / nature / urban / warm / luxury
@@ -24,6 +25,12 @@ config/sightseeing.js の groups 配列に分類を、各 groups の spots 配�
 スポットの title、id（ページ内で一意の英数字・ハイフン・アンダースコア、先頭は英字）、description、images（src/alt の配列） を設定できます。画像は複数枚なら横スクロールになります。
 website、googleMaps、appleMaps に実際のURLを設定します。mapQuery を入力すると、個別の地図URLが未設定の場合に検索リンクを生成します。不要な項目は省略できます。営業時間・料金などの詳細は公式サイトへのリンクで案内します。
 旅のしおりの detail に page: "sightseeing", anchor: "spot-01" のように設定すると、対応する id のカードへ移動します。サンプルの施設は架空であり、画像もイラストです。
+
+## 宿泊施設
+config/hotel.js の hotels 配列に宿泊施設を記述します。複数施設も同じ形式で追加できます。id はページ内で一意の英数字・ハイフン・アンダースコア（先頭は英字）にしてください。
+概要は name、description、checkIn、checkOut、parking、images、website。部屋・食事・お風呂は room / dining / bath に description と images を設定します。設備は amenities の文字列配列、アクセスは access の address、transport、googleMaps、appleMaps です。
+images は画像パスの文字列配列、または src / alt のオブジェクト配列です。複数枚は横スクロール。不要な項目・空の詳細セクションは非表示になります。公式サイトや地図は実際のURLを指定してください。
+旅のしおりの detail に page: "hotel", anchor: "hotel-01" を設定すると対応する宿泊施設へ移動します。サンプル施設は架空です。
 
 ## 確認・公開
 index.html をブラウザで開くか、VS Code Live Serverで確認します。
